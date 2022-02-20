@@ -33,17 +33,12 @@ const game = new Chessboard(document.getElementById("chessgame"), {
 	responsive: true,
 	animationDuration: 300, // pieces animation duration in milliseconds
 	sprite: {
-		url: "./assets/images/chessboard-sprite-staunty.svg",
+		// url: "./assets/images/chessboard-sprite-staunty.svg",
+		url: "./assets/images/chessboard-sprite.svg",
 		size: 40,
 		cache: true
 	}
 });
-
-// game.setPiece("e4", PIECE.wn)
-// await game.movePiece("e4", "c3")
-// await game.movePiece("c3", "d5")
-// await game.movePiece("d5", "f4")
-// console.log(game.getOrientation())
 
 game.enableMoveInput((event) => {
 
@@ -51,7 +46,7 @@ game.enableMoveInput((event) => {
 
 		case INPUT_EVENT_TYPE.moveStart:
 
-			log_text.innerHTML = `Move started: ${event.square}`;
+			log_text.innerHTML = `Move captured: ${event.square}`;
 			return true;
 
 		case INPUT_EVENT_TYPE.moveDone:
@@ -66,7 +61,21 @@ game.enableMoveInput((event) => {
 
 					return true;
 
+				} else if (game.getPiece(event.squareTo) === "wb") {
+
+					log_text.innerHTML = `Cant beat white as white - bishop`;
+
+					return false;
+
 				} else if (game.getPiece(event.squareTo).includes("b")) {
+
+					if (game.getPiece(event.squareTo) === "bk") {
+
+						log_text.innerHTML = `Checkmate: White won`;
+						game.disableMoveInput();
+						return true;
+
+					};
 
 					log_text.innerHTML = `Move accepeted: ${event.squareFrom}-${event.squareTo}`;
 
@@ -89,6 +98,14 @@ game.enableMoveInput((event) => {
 					return true;
 
 				} else if (game.getPiece(event.squareTo).includes("w")) {
+
+					if (game.getPiece(event.squareTo) === "wk") {
+
+						log_text.innerHTML = `Checkmate: Black won`;
+						game.disableMoveInput()
+						return true;
+
+					};
 
 					log_text.innerHTML = `Move accepeted: ${event.squareFrom}-${event.squareTo}`;
 
