@@ -1,0 +1,24 @@
+html {
+	background-color: #656e80;
+}
+
+#chessgame {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 45%;
+}
+
+
+
+p {
+	position: absolute;
+	top: 50%;
+	left: 15%;
+	transform: translate(-50%, -50%);
+	font-family: Lato;
+	font-weight: bolder;
+	font-size: 25px;
+};
+

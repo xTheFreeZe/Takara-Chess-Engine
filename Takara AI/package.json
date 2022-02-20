@@ -1,0 +1,16 @@
+{
+  "name": "takara-ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chess.js": "^0.12.1",
+    "cm-chessboard": "^3.16.7"
+  }
+}
