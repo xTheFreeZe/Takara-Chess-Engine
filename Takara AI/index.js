@@ -11,10 +11,13 @@ import {
 // import Chess from "./node_modules/chess.js/chess.js"
 
 const log_text = document.getElementById("log_text");
-const turns_text = document.getElementById("turns_all");
-var turns_counter = 1;
+const turns_white_text = document.getElementById("turns_white");
+const turns_black_text = document.getElementById("turns_black");
+var white_counter = 0;
+var black_counter = 0;
 
-turns_text.innerHTML = `Turn: ${turns_counter}`;
+turns_white_text.innerHTML = `WMSLC: ${white_counter}`;
+turns_black_text.innerHTML = `BMSLC: ${black_counter}`;
 
 const player_colours = [
 	COLOR.white,
@@ -106,7 +109,24 @@ game.enableMoveInput((event) => {
 				if ((game.getPiece(event.squareTo)) == undefined) {
 
 					log_text.innerHTML = `Move accepeted: ${event.squareFrom}-${event.squareTo}`;
-					turns_text.innerHTML = `Turn: ${turns_counter += 1}`;
+
+					if (game.getPiece(event.squareFrom).includes("wp")) {
+
+						turns_white_text.innerHTML = `WMSLC: ${white_counter = 0}`;
+	
+					} else {
+						
+						turns_white_text.innerHTML = `WMSLC: ${white_counter += 1}`;
+					
+					};
+	
+					if (white_counter > 5) {
+
+						log_text.innerHTML = `Stalemate - 50-move  rule`;
+						game.disableMoveInput();
+					
+					};
+					
 					return true;
 
 				} else if (game.getPiece(event.squareTo) === "wb") {
@@ -124,7 +144,7 @@ game.enableMoveInput((event) => {
 					};
 
 					log_text.innerHTML = `Move accepeted: ${event.squareFrom}-${event.squareTo}`;
-					turns_text.innerHTML = `Turn: ${turns_counter += 1}`;
+					turns_white_text.innerHTML = `WMSLC: ${white_counter = 0}`;
 					return true;
 
 				} else if ((game.getPiece(event.squareTo)).includes("w")) {
@@ -179,7 +199,24 @@ game.enableMoveInput((event) => {
 				if ((game.getPiece(event.squareTo)) == undefined) {
 
 					log_text.innerHTML = `Move accepeted: ${event.squareFrom}-${event.squareTo}`;
-					turns_text.innerHTML = `Turn: ${turns_counter += 1}`;
+
+					if (game.getPiece(event.squareFrom).includes("bp")) {
+	
+						turns_black_text.innerHTML = `BMSLC: ${black_counter = 0}`;
+	
+					} else {
+
+						turns_black_text.innerHTML = `BMSLC: ${black_counter += 1}`;
+
+					};
+					
+					if (black_counter > 5) {
+
+						log_text.innerHTML = `Stalemate - 50-move  rule`;
+						game.disableMoveInput();
+					
+					};
+
 					return true;
 
 				} else if (game.getPiece(event.squareTo).includes("w")) {
@@ -193,7 +230,6 @@ game.enableMoveInput((event) => {
 					};
 
 					log_text.innerHTML = `Move accepeted: ${event.squareFrom}-${event.squareTo}`;
-					turns_text.innerHTML = `Turn: ${turns_counter += 1}`;
 					return true;
 
 				} else if ((game.getPiece(event.squareTo)).includes("b")) {

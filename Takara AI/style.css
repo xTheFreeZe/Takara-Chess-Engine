@@ -20,9 +20,19 @@ html {
 	font-size: 25px;
 }
 
-#turns_all {
+#turns_white {
 	position: absolute;
 	top: 30%;
+	left: 15%;
+	transform: translate(-50%, -50%);
+	font-family: Lato;
+	font-weight: bolder;
+	font-size: 25px;
+}
+
+#turns_black {
+	position: absolute;
+	top: 35%;
 	left: 15%;
 	transform: translate(-50%, -50%);
 	font-family: Lato;
