@@ -10,9 +10,7 @@ html {
 	width: 45%;
 }
 
-
-
-p {
+#log_text {
 	position: absolute;
 	top: 50%;
 	left: 15%;
@@ -20,5 +18,15 @@ p {
 	font-family: Lato;
 	font-weight: bolder;
 	font-size: 25px;
-};
+}
+
+#turns_all {
+	position: absolute;
+	top: 30%;
+	left: 15%;
+	transform: translate(-50%, -50%);
+	font-family: Lato;
+	font-weight: bolder;
+	font-size: 25px;
+}
 
