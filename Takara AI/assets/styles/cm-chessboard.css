@@ -48,27 +48,27 @@
 }
 
 .cm-chessboard.default .board .square.white {
-    fill: #ecdab9
+    fill: #86afcf
 }
 
 .cm-chessboard.default .board .square.black {
-    fill: #c5a076
+    fill: #d8ecfb
 }
 
 .cm-chessboard.default.border-type-thin .board .border {
-    stroke: #c5a076;
+    stroke: #d8ecfb;
     stroke-width: 0.7%;
     fill: transparent
 }
 
 .cm-chessboard.default.border-type-frame .board .border {
-    fill: #ecdab9;
+    fill: #d8ecfb;
     stroke: none
 }
 
 .cm-chessboard.default.border-type-frame .board .border-inner {
     fill: transparent;
-    stroke: #c5a076;
+    stroke: #86afcf;
     stroke-width: 0.7%
 }
 
@@ -78,17 +78,17 @@
 }
 
 .cm-chessboard.default .coordinates .coordinate {
-    fill: #c5a076;
+    fill: #86afcf;
     font-size: 7px;
     cursor: default
 }
 
 .cm-chessboard.default .coordinates .coordinate.black {
-    fill: #ecdab9
+    fill: #86afcf
 }
 
 .cm-chessboard.default .coordinates .coordinate.white {
-    fill: #c5a076
+    fill: #86afcf
 }
 
 .cm-chessboard.green .board .square.white {

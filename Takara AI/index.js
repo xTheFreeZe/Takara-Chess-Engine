@@ -20,21 +20,21 @@ const player_colours = [
 const random_player_colours = player_colours[Math.floor(Math.random() * player_colours.length)];
 
 const game = new Chessboard(document.getElementById("chessgame"), {
-	position: "start", // set as fen, "start" or "empty"
-	orientation: random_player_colours, //this would be "random_player_colours" for random colours
+	position: "start", 
+	orientation: random_player_colours, 
 	style: {
 		cssClass: "default",
-		showCoordinates: true, // show ranks and files
-		borderType: BORDER_TYPE.frame, // thin: thin border, frame: wide border with coordinates in it, none: no border
+		showCoordinates: true, 
+		borderType: BORDER_TYPE.frame,
 		aspectRatio: 1,
 		moveFromMarker: MARKER_TYPE.markerDot,
 		moveToMarker: MARKER_TYPE.markerDot
 	},
 	responsive: true,
-	animationDuration: 300, // pieces animation duration in milliseconds
+	animationDuration: 300, 
 	sprite: {
-		// url: "./assets/images/chessboard-sprite-staunty.svg",
-		url: "./assets/images/chessboard-sprite.svg",
+		url: "./assets/images/chessboard-sprite-staunty.svg",
+		// url: "./assets/images/chessboard-sprite.svg",
 		size: 40,
 		cache: true
 	}
@@ -51,9 +51,54 @@ game.enableMoveInput((event) => {
 
 		case INPUT_EVENT_TYPE.moveDone:
 
-			console.log(game.getPiece(event.squareTo))
+			console.log('Moved piece:', game.getPiece(event.squareFrom));
+
+			console.log("Player on moved square:", game.getPiece(event.squareTo));
+
+			console.log("Current position:", event.squareTo);
 
 			if (random_player_colours === COLOR.white) {
+
+				if (game.getPiece(event.squareFrom).includes("p")) {
+
+					let SquareMoveFromLetter = event.squareFrom.charAt(0);
+					let SquareMoveToLetter = event.squareTo.charAt(0);
+					let SquareMoveFromInt = (event.squareFrom).match(/\d+/)[0];
+					let SquareMoveToInt = (event.squareTo).match(/\d+/)[0];
+
+					console.log("SquareFrom:", SquareMoveFromLetter);
+					console.log("SquareTo:", SquareMoveToLetter);
+					console.log("SquareFrom", SquareMoveFromInt);
+					console.log("SquareTo", SquareMoveToInt);
+
+					if (SquareMoveFromInt != 2) { //TODO: Make sure you can only move 2 squares if you are on start, its possible to skip any on the same row rn.
+
+						if (SquareMoveFromInt - SquareMoveToInt != -1) {
+
+							console.log("Illegal pawn movement");
+							return false;
+
+						};
+
+					};
+
+					if (SquareMoveFromLetter !== SquareMoveToLetter) {
+
+						if ((game.getPiece(event.squareTo)) == undefined) {
+
+							console.log("Illegal pawn movement");
+							return false;
+
+						} else if(!(game.getPiece(event.squareTo)).includes("b")) {
+
+							console.log("Illegal pawn movement");
+							return false();
+
+						};
+
+					};
+
+				};
 
 				if ((game.getPiece(event.squareTo)) == undefined) {
 
@@ -62,8 +107,6 @@ game.enableMoveInput((event) => {
 					return true;
 
 				} else if (game.getPiece(event.squareTo) === "wb") {
-
-					log_text.innerHTML = `Cant beat white as white - bishop`;
 
 					return false;
 
@@ -83,13 +126,52 @@ game.enableMoveInput((event) => {
 
 				} else if ((game.getPiece(event.squareTo)).includes("w")) {
 
-					log_text.innerHTML = `Cant beat white as white`;
-
 					return false;
 
 				};
 
 			} else if (random_player_colours === COLOR.black) {
+
+				if (game.getPiece(event.squareFrom).includes("p")) {
+
+					let SquareMoveFromLetter = event.squareFrom.charAt(0);
+					let SquareMoveToLetter = event.squareTo.charAt(0);
+					let SquareMoveFromInt = (event.squareFrom).match(/\d+/)[0];
+					let SquareMoveToInt = (event.squareTo).match(/\d+/)[0];
+
+					console.log("SquareFrom:", SquareMoveFromLetter);
+					console.log("SquareTo:", SquareMoveToLetter);
+					console.log("SquareFrom", SquareMoveFromInt);
+					console.log("SquareTo", SquareMoveToInt);
+
+					if (SquareMoveFromInt != 7) { //TODO: Make sure you can only move 2 squares if you are on start, its possible to skip any on the same row rn.
+
+						if (SquareMoveFromInt - SquareMoveToInt != 1) {
+
+							console.log("Illegal pawn movement");
+							return false;
+
+						};
+
+					};
+
+					if (SquareMoveFromLetter !== SquareMoveToLetter) {
+
+						if ((game.getPiece(event.squareTo)) == undefined) {
+
+							console.log("Illegal pawn movement");
+							return false;
+
+						} else if(!(game.getPiece(event.squareTo)).includes("w")) {
+
+							console.log("Illegal pawn movement");
+							return false();
+
+						};
+
+					};
+
+				};
 
 				if ((game.getPiece(event.squareTo)) == undefined) {
 
@@ -112,8 +194,6 @@ game.enableMoveInput((event) => {
 					return true;
 
 				} else if ((game.getPiece(event.squareTo)).includes("b")) {
-
-					log_text.innerHTML = `Cant beat black as black`;
 
 					return false;
 
