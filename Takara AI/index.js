@@ -98,7 +98,7 @@ game.enableMoveInput((event) => {
 						} else if(!(game.getPiece(event.squareTo)).includes("b")) {
 
 							console.log("Illegal pawn movement");
-							return false();
+							return false;
 
 						};
 
