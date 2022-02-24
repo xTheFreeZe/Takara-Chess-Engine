@@ -51,11 +51,11 @@ game.enableMoveInput((event) => {
 
 	switch (event.type) {
 
-		case INPUT_EVENT_TYPE.moveStart:
+		case INPUT_EVENT_TYPE.moveStart: //start dragging
 
 			return true;
 
-		case INPUT_EVENT_TYPE.moveDone:
+		case INPUT_EVENT_TYPE.moveDone: //put down piece
 
 			console.log('Moved piece:', game.getPiece(event.squareFrom));
 
@@ -63,9 +63,9 @@ game.enableMoveInput((event) => {
 
 			console.log("Current position:", event.squareTo);
 
-			if (random_player_colours === COLOR.white) {
+			if (random_player_colours === COLOR.white) { // if white
 
-				if (game.getPiece(event.squareFrom).includes("p")) {
+				if (game.getPiece(event.squareFrom).includes("p")) { // if piece is pawn
 
 					let SquareMoveFromLetter = event.squareFrom.charAt(0);
 					let SquareMoveToLetter = event.squareTo.charAt(0);
@@ -79,7 +79,7 @@ game.enableMoveInput((event) => {
 
 					if (SquareMoveFromInt != 2) { //TODO: Make sure you can only move 2 squares if you are on start, its possible to skip any on the same row rn.
 
-						if (SquareMoveFromInt - SquareMoveToInt != -1) {
+						if (SquareMoveFromInt - SquareMoveToInt != -1) { // you cant skip more than 2 fields
 
 							console.log("Illegal pawn movement");
 							return false;
@@ -88,7 +88,7 @@ game.enableMoveInput((event) => {
 
 					};
 
-					if (SquareMoveFromLetter !== SquareMoveToLetter) {
+					if (SquareMoveFromLetter !== SquareMoveToLetter) { //so you cant move sideways with a pawn with no enemy on that square
 
 						if ((game.getPiece(event.squareTo)) == undefined) {
 
@@ -106,11 +106,11 @@ game.enableMoveInput((event) => {
 
 				};
 
-				if ((game.getPiece(event.squareTo)) == undefined) {
+				if ((game.getPiece(event.squareTo)) == undefined) { 
 
 					log_text.innerHTML = `Move accepeted: ${event.squareFrom}-${event.squareTo}`;
 
-					if (game.getPiece(event.squareFrom).includes("wp")) {
+					if (game.getPiece(event.squareFrom).includes("wp")) { //set counter to 0 if you move a pawn or +1 if any other piece
 
 						turns_white_text.innerHTML = `WMSLC: ${white_counter = 0}`;
 	
@@ -120,7 +120,7 @@ game.enableMoveInput((event) => {
 					
 					};
 	
-					if (white_counter > 5) {
+					if (white_counter > 50) { //50 moves rule
 
 						log_text.innerHTML = `Stalemate - 50-move  rule`;
 						game.disableMoveInput();
@@ -129,11 +129,11 @@ game.enableMoveInput((event) => {
 					
 					return true;
 
-				} else if (game.getPiece(event.squareTo) === "wb") {
+				} else if (game.getPiece(event.squareTo) === "wb") { //so you cant beat a white bishop
 
 					return false;
 
-				} else if (game.getPiece(event.squareTo).includes("b")) {
+				} else if (game.getPiece(event.squareTo).includes("b")) { //if enemy on square
 
 					if (game.getPiece(event.squareTo) === "bk") {
 
@@ -153,7 +153,7 @@ game.enableMoveInput((event) => {
 
 				};
 
-			} else if (random_player_colours === COLOR.black) {
+			} else if (random_player_colours === COLOR.black) { // same thing with black
 
 				if (game.getPiece(event.squareFrom).includes("p")) {
 
