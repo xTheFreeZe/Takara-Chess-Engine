@@ -78,22 +78,9 @@ game.enableMoveInput((event) => {
 
 				if (game.getPiece(event.squareFrom).includes("p")) { // if piece is pawn
 
-					if (SquareMoveFromInt = 2) { //TODO: Make sure you can only move 2 squares if you are on start, its possible to skip any on the same row rn.
+					if (SquareMoveFromInt != 2) { //TODO: Make sure you can only move 2 squares if you are on start, its possible to skip any on the same row rn.
 
-						console.log('wowzers 1');
-
-						if ((SquareMoveFromInt - SquareMoveToInt) < -2) {
-
-							console.log("Illegal pawn movement");
-							return false;
-
-						};
-
-					} else if (SquareMoveFromInt != 2) {
-
-						console.log('wowzers 2');
-
-						if ((SquareMoveFromInt - SquareMoveToInt) != -1) { // you cant skip more than 2 fields
+						if (SquareMoveFromInt - SquareMoveToInt != -1) {
 
 							console.log("Illegal pawn movement");
 							return false;
